@@ -30,12 +30,12 @@ animations = [{
 
 [node name="Koopa" type="Area2D"]
 collision_layer = 4
-collision_mask = 9
 script = ExtResource("1_amv0p")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_p0sr4")
 animation = &"walk"
+autoplay = "walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
@@ -43,5 +43,9 @@ shape = ExtResource("4_xcbc3")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(0, 12)
+collision_mask = 2
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
