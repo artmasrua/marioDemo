@@ -27,4 +27,10 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed * delta)
 	
+	$AnimatedSprite2D._trigger_animation(velocity, direction)
+	
 	move_and_slide()
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	if area is Enemy:
+		(area as Enemy)._die_from_hit_hit()
