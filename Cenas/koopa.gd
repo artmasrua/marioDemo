@@ -14,7 +14,7 @@ func _ready() -> void:
 
 func _die():
 	if !in_a_shell:
-		super.die()
+		super._die()
 	
 	in_a_shell = true
 	collision_shape_2d.set_deferred("shape", koopa_shell)
@@ -22,18 +22,17 @@ func _die():
 
 func _on_stomp(player_position: Vector2):
 	set_collision_layer_value(3, false)
-	set_collision_mask_value(4, true)
-	set_collision_layer_value(1, false)
+	set_collision_mask_value(1, false)
+	set_collision_layer_value(4, true)
 	set_collision_mask_value(3, true)
 	
 	var movement_direction = 1 if player_position <= global_position else -1
 	h_speed = -movement_direction * slide_speed
 	
 
-
 func _on_area_entered(area: Area2D) -> void:
-	if area is Koopa && (area as Koopa).in_a_shell && (area as Koopa).h_speed != 0:
-		_die_from_hit_hit()
+	if area is Koopa and (area as Koopa).in_a_shell and (area as Koopa).h_speed != 0:
+		_die_from_hit()
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	queue_free()
