@@ -46,6 +46,9 @@ tile_set = SubResource("TileSet_irhh0")
 
 [node name="Player" parent="." instance=ExtResource("5_ja1os")]
 position = Vector2(-193, 38)
+speed = 200.0
+jump_velocity = -350.0
+run_speed_damping = 0.5
 
 [node name="Enemies" type="Node" parent="."]
 
